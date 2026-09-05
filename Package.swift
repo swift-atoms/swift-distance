@@ -23,7 +23,13 @@ let package = Package(
                 .product(name: "Subtraction", package: "swift-subtraction"),
             ]
         ),
-        .testTarget(name: "Distance Tests", dependencies: ["Distance"]),
+        .testTarget(
+            name: "Distance Tests",
+            dependencies: [
+                .target(name: "Distance"),
+                .product(name: "Subtraction", package: "swift-subtraction"),
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
