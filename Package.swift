@@ -9,8 +9,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Distance", targets: ["Distance"]),
-        .library(name: "Distance Standard Library Integration", targets: ["Distance Standard Library Integration"]),
-        .library(name: "Distance Foundation Library Integration", targets: ["Distance Foundation Library Integration"]),
+
+        .library(name: "Distance Foundation Integration", targets: ["Distance Foundation Integration"]),
         .library(name: "Distance Test Support", targets: ["Distance Test Support"]),
     ],
     dependencies: [
@@ -27,20 +27,13 @@ let package = Package(
             ],
             path: "Sources/Distance"
         ),
+        
         .target(
-            name: "Distance Standard Library Integration",
+            name: "Distance Foundation Integration",
             dependencies: [
                 .target(name: "Distance"),
             ],
-            path: "Sources/Distance Standard Library Integration"
-        ),
-        .target(
-            name: "Distance Foundation Library Integration",
-            dependencies: [
-                .target(name: "Distance"),
-                .target(name: "Distance Standard Library Integration"),
-            ],
-            path: "Sources/Distance Foundation Library Integration"
+            path: "Sources/Distance Foundation Integration"
         ),
         .target(
             name: "Distance Test Support",
@@ -55,8 +48,7 @@ let package = Package(
                 .target(name: "Distance"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .target(name: "Distance Test Support"),
-                .target(name: "Distance Standard Library Integration"),
-                .target(name: "Distance Foundation Library Integration"),
+                .target(name: "Distance Foundation Integration"),
             ],
             path: "Tests/Distance Tests"
         ),
