@@ -1,8 +1,8 @@
 public import Subtraction
 
-/// The identity and unsigned integer kernel for directed forward separation.
-///
-/// This operation does not imply metric axioms.
+
+
+
 public enum Distance {}
 
 extension Distance {
