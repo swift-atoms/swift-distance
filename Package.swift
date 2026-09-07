@@ -9,6 +9,9 @@ let package = Package(
     ],
     products: [
         .library(name: "Distance", targets: ["Distance"]),
+        .library(name: "Distance Standard Library Integration", targets: ["Distance Standard Library Integration"]),
+        .library(name: "Distance Foundation Library Integration", targets: ["Distance Foundation Library Integration"]),
+        .library(name: "Distance Test Support", targets: ["Distance Test Support"]),
     ],
     dependencies: [
         .package(
@@ -21,21 +24,48 @@ let package = Package(
             name: "Distance",
             dependencies: [
                 .product(name: "Subtraction", package: "swift-subtraction"),
-            ]
+            ],
+            path: "Sources/Distance"
+        ),
+        .target(
+            name: "Distance Standard Library Integration",
+            dependencies: [
+                .target(name: "Distance"),
+            ],
+            path: "Sources/Distance Standard Library Integration"
+        ),
+        .target(
+            name: "Distance Foundation Library Integration",
+            dependencies: [
+                .target(name: "Distance"),
+                .target(name: "Distance Standard Library Integration"),
+            ],
+            path: "Sources/Distance Foundation Library Integration"
+        ),
+        .target(
+            name: "Distance Test Support",
+            dependencies: [
+                .target(name: "Distance"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: "Distance Tests",
             dependencies: [
                 .target(name: "Distance"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
-            ]
+                .target(name: "Distance Test Support"),
+                .target(name: "Distance Standard Library Integration"),
+                .target(name: "Distance Foundation Library Integration"),
+            ],
+            path: "Tests/Distance Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    target.swiftSettings = (target.swiftSettings ?? []) + [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
