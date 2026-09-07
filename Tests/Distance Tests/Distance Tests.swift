@@ -3,7 +3,7 @@ import Distance
 import Testing
 
 @Suite
-struct `Distance Tests` {
+struct `Forward distance is checked and saturates for reversed bounds` {
 
     @Test
     func `forward distance is exact`() throws {
