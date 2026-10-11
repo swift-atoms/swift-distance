@@ -48,7 +48,6 @@ let package = Package(
                 .target(name: "Distance"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .target(name: "Distance Test Support"),
-                .target(name: "Distance Foundation Integration"),
             ],
             path: "Tests/Distance Tests"
         ),
@@ -56,7 +55,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
