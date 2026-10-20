@@ -1,8 +1,5 @@
 public import Subtraction
 
-
-
-
 public enum Distance {}
 
 extension Distance {

@@ -1,5 +1,5 @@
-import Subtraction
 import Distance
+import Subtraction
 import Testing
 
 @Suite
